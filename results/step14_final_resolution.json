@@ -12,8 +12,7 @@
     "tracking_error_max": 0.01,
     "view_hit_rate_window_quarters": 8,
     "view_hit_rate_min": 0.55,
-    "domestic_equity_annual_net_sale_limit_trn_educational_assumption": 48.0
+    "domestic_equity_market_participation_max": 0.01
   },
-  "minority_view": "Maintain official 2027 targets until view hit-rate evidence accumulates; use BL as a supplementary tool.",
-  "caveat": "48 trillion KRW annual sale capacity is an educational case assumption and should be recalculated from current ADV in any real implementation."
+  "minority_view": "Maintain official 2027 targets until view hit-rate evidence accumulates; use BL as a supplementary tool."
 }
