@@ -1,0 +1,21 @@
+{
+  "delta": 2.5,
+  "tau": 0.025,
+  "T_years": 10.0,
+  "rf": 0.03,
+  "prior_weight": 0.8,
+  "cma_weight": 0.2,
+  "P": "identity",
+  "Omega": "Sigma/T",
+  "Sigma_BL_choice": "Sigma unchanged",
+  "cash_treatment": "0.1% fixed outside 8-asset risky BL system",
+  "active_cap": 0.03,
+  "TE_cap": 0.01,
+  "robust_BL_kappa": 2.710003966362742,
+  "final_BL_portfolio": "Robust BL",
+  "notes": [
+    "The Step 11 team target is not used as the BL prior.",
+    "BL-MVO hit several +/-3% active caps and the 1.0% TE cap, so Ellipsoidal Robust BL was applied without manual weight edits.",
+    "Robust BL still binds some caps; these are reported rather than manually overridden."
+  ]
+}
