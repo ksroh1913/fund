@@ -1,9 +1,0 @@
-scenario,portfolio,expected_return_vs_official
-Baseline,Team,4.388548854310226e-06
-Baseline,Robust_BL,-0.0020373057802989952
-Stress1_CMA_1SE,Team,-6.0589962198487335e-05
-Stress1_CMA_1SE,Robust_BL,-0.00361564104740935
-Stress2_Equity,Team,8.43885488543139e-05
-Stress2_Equity,Robust_BL,-0.0011573057802989964
-Stress3_Alternatives,Team,4.388548854310226e-06
-Stress3_Alternatives,Robust_BL,-0.0020373057802989952
