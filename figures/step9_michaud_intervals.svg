@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<style>text{font-family:Arial,"Noto Sans KR","Malgun Gothic",sans-serif;font-size:13px}.title{font-size:18px;font-weight:700}.small{font-size:11px;fill:#555}.grid{stroke:#ddd;stroke-width:1}.interval{stroke:#444;stroke-width:3}.mean{fill:#111}.base{stroke:#777;stroke-width:2}</style>
+<text class="title" x="20" y="28">STEP 9 Michaud 재표본 비중 분포 (B=300)</text>
+<text class="small" x="20" y="47">선: 5~95% 구간 · ● Michaud 평균 · × 기준 정책 MVO</text>
+<line class="grid" x1="210.0" y1="45" x2="210.0" y2="473"/><text class="small" x="210.0" y="493" text-anchor="middle">0%</text>
+<line class="grid" x1="291.2" y1="45" x2="291.2" y2="473"/><text class="small" x="291.2" y="493" text-anchor="middle">5%</text>
+<line class="grid" x1="372.5" y1="45" x2="372.5" y2="473"/><text class="small" x="372.5" y="493" text-anchor="middle">10%</text>
+<line class="grid" x1="453.8" y1="45" x2="453.8" y2="473"/><text class="small" x="453.8" y="493" text-anchor="middle">15%</text>
+<line class="grid" x1="535.0" y1="45" x2="535.0" y2="473"/><text class="small" x="535.0" y="493" text-anchor="middle">20%</text>
+<line class="grid" x1="616.2" y1="45" x2="616.2" y2="473"/><text class="small" x="616.2" y="493" text-anchor="middle">25%</text>
+<line class="grid" x1="697.5" y1="45" x2="697.5" y2="473"/><text class="small" x="697.5" y="493" text-anchor="middle">30%</text>
+<line class="grid" x1="778.8" y1="45" x2="778.8" y2="473"/><text class="small" x="778.8" y="493" text-anchor="middle">35%</text>
+<line class="grid" x1="860.0" y1="45" x2="860.0" y2="473"/><text class="small" x="860.0" y="493" text-anchor="middle">40%</text>
+<text x="198" y="59.0" text-anchor="end">국내주식</text><line class="interval" x1="453.7" y1="55.0" x2="616.2" y2="55.0"/><circle class="mean" cx="535.8" cy="55.0" r="5"/><line class="base" x1="552.4" y1="50.0" x2="562.4" y2="60.0"/><line class="base" x1="562.4" y1="50.0" x2="552.4" y2="60.0"/>
+<text x="198" y="117.6" text-anchor="end">글로벌 선진국 DM</text><line class="interval" x1="535.0" y1="113.6" x2="812.1" y2="113.6"/><circle class="mean" cx="632.7" cy="113.6" r="5"/><line class="base" x1="540.1" y1="108.6" x2="550.1" y2="118.6"/><line class="base" x1="550.1" y1="108.6" x2="540.1" y2="118.6"/>
+<text x="198" y="176.1" text-anchor="end">글로벌 신흥국 EM</text><line class="interval" x1="210.0" y1="172.1" x2="372.5" y2="172.1"/><circle class="mean" cx="336.0" cy="172.1" r="5"/><line class="base" x1="367.5" y1="167.1" x2="377.5" y2="177.1"/><line class="base" x1="377.5" y1="167.1" x2="367.5" y2="177.1"/>
+<text x="198" y="234.7" text-anchor="end">국내 국채(초장기)</text><line class="interval" x1="453.7" y1="230.7" x2="616.2" y2="230.7"/><circle class="mean" cx="536.2" cy="230.7" r="5"/><line class="base" x1="497.5" y1="225.7" x2="507.5" y2="235.7"/><line class="base" x1="507.5" y1="225.7" x2="497.5" y2="235.7"/>
+<text x="198" y="293.3" text-anchor="end">글로벌 IG 크레딧</text><line class="interval" x1="291.2" y1="289.3" x2="405.0" y2="289.3"/><circle class="mean" cx="376.7" cy="289.3" r="5"/><line class="base" x1="400.0" y1="284.3" x2="410.0" y2="294.3"/><line class="base" x1="410.0" y1="284.3" x2="400.0" y2="294.3"/>
+<text x="198" y="351.9" text-anchor="end">사모주식 PE/VC</text><line class="interval" x1="210.0" y1="347.9" x2="366.5" y2="347.9"/><circle class="mean" cx="242.5" cy="347.9" r="5"/><line class="base" x1="205.0" y1="342.9" x2="215.0" y2="352.9"/><line class="base" x1="215.0" y1="342.9" x2="205.0" y2="352.9"/>
+<text x="198" y="410.4" text-anchor="end">실물 인프라</text><line class="interval" x1="210.0" y1="406.4" x2="372.5" y2="406.4"/><circle class="mean" cx="313.1" cy="406.4" r="5"/><line class="base" x1="335.0" y1="401.4" x2="345.0" y2="411.4"/><line class="base" x1="345.0" y1="401.4" x2="335.0" y2="411.4"/>
+<text x="198" y="469.0" text-anchor="end">사모대출 PD</text><line class="interval" x1="210.0" y1="465.0" x2="372.5" y2="465.0"/><circle class="mean" cx="332.1" cy="465.0" r="5"/><line class="base" x1="367.5" y1="460.0" x2="377.5" y2="470.0"/><line class="base" x1="377.5" y1="460.0" x2="367.5" y2="470.0"/>
+</svg>
