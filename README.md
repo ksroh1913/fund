@@ -2,7 +2,7 @@
 
 국민연금 CMA 기반 2027 목표비중 및 MVO/Robust/Black-Litterman 종합과제 작업 저장소입니다.
 
-현재 커밋에는 **STEP 2 및 STEP 5~10 재현 코드와 중간 산출물**을 정리했습니다.
+현재 커밋에는 **STEP 2 및 STEP 5~11 재현 코드와 중간 산출물**을 정리했습니다.
 
 ## 구조
 
@@ -11,7 +11,7 @@ src/
   step2_build_corr.py
   analyze_steps5_8.py
   step9_michaud.py
-  step10_method_synthesis.py
+  step10_method_synthesis.py\n  step11_team_target.py
 
 results/
   step5_mvo.csv
@@ -26,7 +26,7 @@ results/
   step10_reaggregated.csv
   step10_mu_50bp_sensitivity_summary.csv
   step10_small_eigenvectors.csv
-  step10_meta.json
+  step10_meta.json\n  step11_tableC_detailed.csv\n  step11_tableC_common.csv\n  step11_transition_2026H1_to_team.csv\n  step11_team_target_meta.json
 
 figures/
   step9_michaud_intervals.svg
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 python src/step2_build_corr.py
 python src/analyze_steps5_8.py
 python src/step9_michaud.py
-python src/step10_method_synthesis.py
+python src/step10_method_synthesis.py\npython src/step11_team_target.py
 ```
 
 ## 주요 분석 가정
