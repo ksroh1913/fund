@@ -1,0 +1,19 @@
+{
+  "final_common_weights": {
+    "국내주식": 0.1916614561381548,
+    "해외주식": 0.3283385438618453,
+    "국내채권": 0.24800000000000005,
+    "해외채권": 0.09246857679294879,
+    "대체투자": 0.13853142320705125,
+    "단기자금": 0.001
+  },
+  "decision_basis": "Robust BL after Policy BL and Step 13 stress tests",
+  "review_conditions": {
+    "tracking_error_max": 0.01,
+    "view_hit_rate_window_quarters": 8,
+    "view_hit_rate_min": 0.55,
+    "domestic_equity_annual_net_sale_limit_trn_educational_assumption": 48.0
+  },
+  "minority_view": "Maintain official 2027 targets until view hit-rate evidence accumulates; use BL as a supplementary tool.",
+  "caveat": "48 trillion KRW annual sale capacity is an educational case assumption and should be recalculated from current ADV in any real implementation."
+}
