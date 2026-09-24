@@ -1,0 +1,38 @@
+{
+  "team_common": {
+    "국내주식": 0.22,
+    "해외주식": 0.34,
+    "국내채권": 0.205,
+    "해외채권": 0.085,
+    "대체투자": 0.149,
+    "단기자금": 0.001
+  },
+  "team_detailed": {
+    "국내주식": 0.22,
+    "글로벌 선진국 DM": 0.275,
+    "글로벌 신흥국 EM": 0.065,
+    "국내 국채(초장기)": 0.205,
+    "글로벌 IG 크레딧": 0.085,
+    "사모주식 PE/VC": 0.03,
+    "실물 인프라": 0.065,
+    "사모대출 PD": 0.054,
+    "단기자금": 0.001
+  },
+  "metrics": {
+    "expected_return": 0.057087000000000006,
+    "volatility": 0.10607109660433556,
+    "sharpe": 0.25536645577484157,
+    "TE_vs_official_mapped": 0.00862535325383139,
+    "turnover_vs_official_mapped": 0.08318666666666666
+  },
+  "notes": [
+    "Cash 0.1% is fixed outside the 8-asset risky-sleeve optimization.",
+    "Static-balance equivalents are not required transaction amounts; market moves, cash flows, and natural drift can change the path.",
+    "Only DM and EM differ from official mapped weights by more than 2 percentage points in the detailed team classification."
+  ],
+  "sources": [
+    "https://www.mohw.go.kr/gallery.es?act=view&b_list=12&bid=0003&list_no=380100",
+    "https://fund.nps.or.kr/oprtprcn/otln/getOHED0013M0.do",
+    "https://fund.nps.or.kr/oprtplcy/astaprtplcy/getOHEC0007M0.do"
+  ]
+}
