@@ -1,0 +1,9 @@
+scenario,check,value
+Stress2,raw_min_corr_eigenvalue,0.033518253743631814
+Stress2,PSD_fix_applied,False
+Stress2,final_min_corr_eigenvalue,0.033518253743631814
+Stress2,final_min_cov_eigenvalue,0.0007404821586840245
+Stress3,raw_min_corr_eigenvalue,-0.20076622269952782
+Stress3,PSD_fix_applied,True
+Stress3,final_min_corr_eigenvalue,9.455656487055585e-09
+Stress3,final_min_cov_eigenvalue,2.900573552395288e-10
