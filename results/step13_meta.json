@@ -1,0 +1,23 @@
+{
+  "baseline_expected_return": "Policy BL posterior total return",
+  "baseline_covariance": "Team CMA covariance Sigma",
+  "stress1": {
+    "rule": "CMA total return +/- 1 bootstrap SE adverse to Robust BL active sign; then propagated through Policy BL posterior (20% CMA weight)",
+    "CMA_SE_source": "Step 8 bootstrap S_mu diagonal"
+  },
+  "stress2": {
+    "equity_assets": ["국내주식", "글로벌 선진국 DM", "글로벌 신흥국 EM"],
+    "expected_return_shock_pp": -2.0,
+    "pairwise_equity_correlation_shock": 0.15,
+    "PSD_fix_applied": false
+  },
+  "stress3": {
+    "alternative_assets": ["사모주식 PE/VC", "실물 인프라", "사모대출 PD"],
+    "global_equity_assets": ["글로벌 선진국 DM", "글로벌 신흥국 EM"],
+    "alternative_vol_multiplier": 1.5,
+    "alt_global_equity_correlation_shock": 0.2,
+    "PSD_fix_applied": true
+  },
+  "gamma_for_utility": 4.0,
+  "cash_weight": 0.001
+}
