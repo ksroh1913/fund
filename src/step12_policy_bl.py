@@ -158,7 +158,7 @@ pd.DataFrame([{"method":"BL-MVO_TE095",**{assets[i]:wb95[i] for i in range(n)},*
 ).to_csv(RESULTS/"step12_TE095_sensitivity.csv",index=False,encoding="utf-8-sig")
 
 # Cash sensitivity: optimize a ninth cash asset with mu=rf, sigma=0, cash in [0,2%].
-def solve_cash(mbl,V=None,kappa=0.,te_cap=.01):
+def solve_cash(mbl,V=None,kappa=0.,te_cap=.01,use_bl_limits=True):
     x0=np.r_[w_prior_total,CASH]
     b9=bounds8+[(0,.02)]
     def obj(x):
@@ -176,17 +176,19 @@ def solve_cash(mbl,V=None,kappa=0.,te_cap=.01):
       {"type":"ineq","fun":lambda x:x[EQ].sum()-.52},{"type":"ineq","fun":lambda x:.60-x[EQ].sum()},
       {"type":"ineq","fun":lambda x:x[BD].sum()-.25},{"type":"ineq","fun":lambda x:.35-x[BD].sum()},
     ]
-    for j in range(n):
-        c += [{"type":"ineq","fun":lambda x,j=j:ACTIVE_CAP-(x[j]-w_prior_total[j])},
-              {"type":"ineq","fun":lambda x,j=j:ACTIVE_CAP+(x[j]-w_prior_total[j])}]
-    c.append({"type":"ineq","fun":lambda x:te_cap-np.sqrt(max(0.,(x[:n]-w_prior_total)@Sigma@(x[:n]-w_prior_total)))})
+    if use_bl_limits:
+        for j in range(n):
+            c += [{"type":"ineq","fun":lambda x,j=j:ACTIVE_CAP-(x[j]-w_prior_total[j])},
+                  {"type":"ineq","fun":lambda x,j=j:ACTIVE_CAP+(x[j]-w_prior_total[j])}]
+        c.append({"type":"ineq","fun":lambda x:te_cap-np.sqrt(max(0.,(x[:n]-w_prior_total)@Sigma@(x[:n]-w_prior_total)))})
     r=minimize(obj,x0,method="SLSQP",bounds=b9,constraints=c,options={"ftol":1e-14,"maxiter":10000})
     if not r.success: raise RuntimeError(r.message)
     return r.x
+cm=solve_cash(mu_total,use_bl_limits=False)
 cb=solve_cash(mu_bl_total); cr=solve_cash(mu_bl_total,V_BL,KAPPA)
 cashrows=[]
-for nm,x in [("BL-MVO_cash_optimized",cb),("Robust_BL_cash_optimized",cr)]:
-    cashrows.append({"method":nm,**{assets[i]:x[i] for i in range(n)},"단기자금":x[-1],**metrics8(x[:n],mu_bl_total,x[-1])})
+for nm,x,m_eval in [("Policy_MVO_cash_optimized",cm,mu_total),("BL-MVO_cash_optimized",cb,mu_bl_total),("Robust_BL_cash_optimized",cr,mu_bl_total)]:
+    cashrows.append({"method":nm,**{assets[i]:x[i] for i in range(n)},"단기자금":x[-1],**metrics8(x[:n],m_eval,x[-1])})
 pd.DataFrame(cashrows).to_csv(RESULTS/"step12_cash_sensitivity.csv",index=False,encoding="utf-8-sig")
 
 meta={"delta":DELTA,"tau":TAU,"T_years_baseline":10.,"rf":RF,"gamma":GAMMA,
