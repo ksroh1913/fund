@@ -2,7 +2,7 @@
 
 국민연금 CMA 기반 2027 목표비중 및 MVO/Robust/Policy Black-Litterman 종합과제 작업 저장소입니다.
 
-현재 구현 범위: **STEP 2, STEP 5~12**
+현재 구현 범위: **STEP 2, STEP 5~13**
 
 ## 구조
 
@@ -13,7 +13,7 @@ src/
   step9_michaud.py
   step10_method_synthesis.py
   step11_team_target.py
-  step12_policy_bl.py
+  step12_policy_bl.py\n  step13_stress_test.py
 
 results/
   step5_mvo.csv
@@ -40,7 +40,7 @@ results/
   step12_tauSigma.csv
   step12_Omega.csv
   step12_VBL.csv
-  step12_meta.json
+  step12_meta.json\n  step13_stress_results.csv\n  step13_stress1_view_miss.csv\n  step13_stress1_active_loss.csv\n  step13_covariance_diagnostics.csv\n  step13_relative_to_official.csv\n  step13_meta.json
 
 figures/
   step9_michaud_intervals.svg
@@ -55,7 +55,7 @@ python src/analyze_steps5_8.py
 python src/step9_michaud.py
 python src/step10_method_synthesis.py
 python src/step11_team_target.py
-python src/step12_policy_bl.py
+python src/step12_policy_bl.py\npython src/step13_stress_test.py
 ```
 
 ## 공통 분석 가정
@@ -129,5 +129,34 @@ BL-MVO가 여러 active cap과 TE 1.0% 한도에 붙어, 수작업으로 수정�
 - STEP 9: Michaud Resampling
 - STEP 10: 방법론 종합비교
 - STEP 11: 2027 팀 목표비중 시나리오
-- **STEP 12: Policy Black-Litterman 완료**
-- 다음: **STEP 13 Stress Test → 최종 의결**
+- STEP 12: Policy Black-Litterman 완료
+- **STEP 13: Stress Test 완료**
+- 다음: **최종 의결문·재심의 조건·PPT/제출파일 정리**
+
+## STEP 13 Stress Test
+
+### Stress 1 — CMA 뷰 1SE 실패
+최종 Robust BL의 active 부호에 불리하도록 각 CMA 기대수익률을 Step 8 bootstrap 표준오차 1개만큼 충격하고, Policy BL의 CMA 가중치 20%를 통해 posterior에 반영했다. 이 충격은 active bet을 일부러 불리하게 만드는 상대성과 스트레스이므로 절대 기대수익률보다 공식목표 대비 active alpha 변화를 본다.
+
+- Team active loss vs official: 약 **-0.65bp**
+- Robust BL active loss vs official: 약 **-15.78bp**
+
+### Stress 2 — 주식 기대수익률 -2%p, 주식 상관 +0.15
+
+| 포트폴리오 | 기대수익률 변화 | 변동성 변화 | 효용 변화 |
+|---|---:|---:|---:|
+| Official | -1.128%p | +0.373%p | -1.291%p |
+| Team | -1.120%p | +0.430%p | -1.306%p |
+| Robust BL | **-1.040%p** | **+0.348%p** | **-1.179%p** |
+
+### Stress 3 — 대체 변동성 +50%, 대체-글로벌주식 상관 +0.20
+
+| 포트폴리오 | 변동성 | 변동성 변화 | 효용 변화 |
+|---|---:|---:|---:|
+| Official | 11.49% | +0.778%p | -0.345%p |
+| Team | 11.32% | +0.716%p | -0.314%p |
+| Robust BL | **10.40%** | **+0.585%p** | **-0.237%p** |
+
+Stress 3의 직접 상관충격 행렬은 최소 고유값이 -0.201로 비정상(비-PSD)이 되어 nearest-PSD 보정을 적용했다. 보정 적용 여부와 최종 최소 고유값은 results/step13_covariance_diagnostics.csv에 기록했다.
+
+세 스트레스 모두에서 Robust BL은 위험 증가 또는 효용 감소 측면에서 공식목표와 팀 시나리오보다 완충력이 높게 나타났다. 단, Stress 1에서는 CMA 뷰 실패가 BL active bet을 겨냥하기 때문에 공식목표 대비 active alpha가 추가로 약 15.8bp 악화되며, 이는 최종 재심의 조건의 뷰 적중률 기준과 연결한다.
