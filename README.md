@@ -2,15 +2,16 @@
 
 국민연금 CMA 기반 2027 목표비중 및 MVO/Robust/Black-Litterman 종합과제 작업 저장소입니다.
 
-현재 커밋에는 **STEP 2 및 STEP 5~9 재현 코드와 중간 산출물**을 정리했습니다.
+현재 커밋에는 **STEP 2 및 STEP 5~10 재현 코드와 중간 산출물**을 정리했습니다.
 
 ## 구조
 
 ```
 src/
-  step2_build_corr.py       # 8자산 실제 프록시 월간수익률 → 상관/공분산 구축
-  analyze_steps5_8.py       # 기준 MVO, Ledoit-Wolf, Box, Ellipsoid 재현
-  step9_michaud.py          # Michaud 300회 재표본 + LW
+  step2_build_corr.py
+  analyze_steps5_8.py
+  step9_michaud.py
+  step10_method_synthesis.py
 
 results/
   step5_mvo.csv
@@ -20,11 +21,15 @@ results/
   step8_ellipsoid.csv
   step9_michaud_summary.csv
   step9_michaud_meta.json
+  step10_tableB_weights.csv
+  step10_tableB_metrics.csv
+  step10_reaggregated.csv
+  step10_mu_50bp_sensitivity_summary.csv
+  step10_small_eigenvectors.csv
+  step10_meta.json
 
 figures/
   step9_michaud_intervals.svg
-
-requirements.txt
 ```
 
 ## 분석 자산 순서
@@ -45,6 +50,7 @@ pip install -r requirements.txt
 python src/step2_build_corr.py
 python src/analyze_steps5_8.py
 python src/step9_michaud.py
+python src/step10_method_synthesis.py
 ```
 
 ## 주요 분석 가정
@@ -55,30 +61,53 @@ python src/step9_michaud.py
 - 대체투자 공식비중의 세부 매핑: PE/VC, 인프라, PD 동일비중
 - 기준 위험회피계수: gamma = 4
 - 세부 상한: EM 10%, PE 10%, 인프라 10%, PD 10%
-  - 이 한도는 공식 국민연금 한도가 아니라 **팀 분석 가정**이며 추후 민감도 검토 대상
+  - 공식 국민연금 세부 한도가 아닌 팀 분석 가정
 - Box 폭: 주식 1.0%p, 채권 0.5%p, 대체 1.5%p
 - Ellipsoid: bootstrap 5,000회, seed 60080
-- Michaud:
-  - B=300, seed=60080
-  - T=120개월을 복원추출
-  - 각 표본의 역사적 평균 오차를 2팀 CMA 기대수익률 중심으로 재중심화
-  - 각 반복에서 Ledoit-Wolf 상관구조를 재추정하고 CMA 변동성으로 재스케일
-  - gamma=4 및 동일 정책제약으로 300회 최적화 후 평균
+- Michaud: B=300, seed=60080, 매 반복 Ledoit-Wolf 재추정 후 평균
 
-## STEP 9 Michaud 결과
+## STEP 10 방법론 종합
 
-| 자산 | 기준 MVO | Michaud 평균 | 5% | 50% | 95% |
-|---|---:|---:|---:|---:|---:|
-| 국내주식 | 21.38% | 20.05% | 15.0% | 22.0% | 25.0% |
-| 글로벌 DM | 20.62% | 26.01% | 20.0% | 27.0% | 37.05% |
-| 글로벌 EM | 10.00% | 7.75% | 0.0% | 10.0% | 10.0% |
-| 국내국채 | 18.00% | 20.08% | 15.0% | 20.16% | 25.0% |
-| 글로벌 IG | 12.00% | 10.26% | 5.0% | 12.0% | 12.0% |
-| PE/VC | 0.00% | 2.00% | 0.0% | 0.0% | 9.63% |
-| 인프라 | 8.00% | 6.34% | 0.0% | 8.0% | 10.0% |
-| PD | 10.00% | 7.51% | 0.0% | 10.0% | 10.0% |
+### Table B
 
-Michaud 평균 포트폴리오는 기대수익률 5.77%, 변동성 10.31%, 공식 mapped 대비 TE 1.06%, 회전율 12.07%이다. 기준 정책 MVO의 TE 1.80%, 회전율 20.75%보다 공식 목표에 가까워졌고, PE가 0%에서 평균 2.0%로 복원되는 등 단일 코너해가 일부 완화되었다. 다만 EM·PD 등은 반복별로 0% 또는 상한에 자주 붙어 분포 폭이 크므로 단일 수치보다 5/50/95% 구간을 함께 해석한다.
+| 자산 | Official mapped | Policy MVO | LW | Box | Ellipsoid | Michaud |
+|---|---:|---:|---:|---:|---:|---:|
+| 국내주식 | 20.82% | 21.38% | 19.99% | 20.65% | 15.00% | 20.05% |
+| 글로벌 DM | 32.78% | 20.62% | 22.01% | 21.35% | 27.00% | 26.01% |
+| 글로벌 EM | 2.85% | 10.00% | 10.00% | 10.00% | 10.00% | 7.75% |
+| 국내국채 | 21.82% | 18.00% | 18.00% | 21.65% | 25.00% | 20.08% |
+| 글로벌 IG | 7.41% | 12.00% | 12.00% | 12.00% | 10.00% | 10.26% |
+| PE/VC | 4.77% | 0.00% | 0.00% | 0.00% | 0.00% | 2.00% |
+| 인프라 | 4.77% | 8.00% | 8.00% | 4.35% | 10.00% | 6.34% |
+| PD | 4.77% | 10.00% | 10.00% | 10.00% | 3.00% | 7.51% |
+
+### 50bp 기대수익률 민감도
+
+- 국내주식 CMA를 -0.5%p 낮추면 국내주식 비중은 약 **-3.83%p**
+- 글로벌 DM CMA를 +0.5%p 높이면 DM 비중은 약 **+3.83%p**
+- 나머지 자산은 현재 정책제약/세부상한에 붙어 있어 ±0.5%p 범위에서 자체 비중 변화가 거의 없음
+- 따라서 이 결과는 “민감하지 않다”라기보다 **제약이 국소 민감도를 가리고 있음**으로 해석
+
+### 작은 고유값
+
+최소 고유값은 약 0.001493. 최소 고유벡터는 부호를 뒤집어도 동일한 방향이므로, 경제적으로는 대략
+
+- 한쪽: 국내국채·PD·DM
+- 반대쪽: 글로벌 IG·PE·인프라
+
+의 상대가치 조합을 뜻한다. 작은 분산으로 추정된 이 상대조합은 역공분산을 사용하는 MVO에서 작은 입력오차를 큰 비중 이동으로 증폭시킬 수 있으며, 공매도 금지·정책제약 아래에서는 상·하한 코너해 형태로 나타난다.
+
+### 주된 참고모형
+
+**Michaud(LW+재표본) 평균을 주된 참고모형으로 사용**한다.
+
+- 단일 표본 MVO의 코너해를 평균화
+- μ와 Σ의 표본불확실성을 함께 반영
+- 각 반복에서 LW를 적용해 공분산 잡음도 완화
+- 공식 mapped 대비 TE와 회전율이 기준 MVO보다 낮음
+- Ellipsoid는 기대수익률 오차의 방향성과 크기를 점검하는 강건성 검증모형으로 병행
+
+단, 이후 w2027 team은 Michaud 비중을 그대로 복사하지 않고 규모·시장지분·대체투자 집행속도·환위험·2026→2027 이행가능성을 추가 판단한다.
 
 ## 현재 상태
 
@@ -87,5 +116,6 @@ Michaud 평균 포트폴리오는 기대수익률 5.77%, 변동성 10.31%, 공�
 - STEP 6: Ledoit-Wolf
 - STEP 7: Box Robust
 - STEP 8: Ellipsoidal Robust
-- **STEP 9: Michaud Resampling 완료**
-- 다음: 방법론 종합비교 → 2027 팀 목표비중 → Policy Black-Litterman → Stress Test
+- STEP 9: Michaud Resampling
+- **STEP 10: 방법론 종합비교 완료**
+- 다음: **2027 팀 목표비중 제안 → Policy Black-Litterman → Stress Test**
