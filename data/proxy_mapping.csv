@@ -1,0 +1,9 @@
+asset,ticker,proxy,currency_basis,mu_cma,sigma_cma
+국내주식,069500.KS,KODEX 200,KRW (domestic),0.062,0.195
+글로벌 선진국 DM,URTH,iShares MSCI World ETF,KRW unhedged (USD asset × USDKRW),0.056,0.162
+글로벌 신흥국 EM,EEM,iShares MSCI Emerging Markets ETF,KRW unhedged (USD asset × USDKRW),0.084,0.21
+국내 국채(초장기),152380.KS,KODEX 국채선물10년,KRW (domestic),0.036,0.065
+글로벌 IG 크레딧,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,KRW unhedged (USD asset × USDKRW),0.053,0.078
+사모주식 PE/VC,PSP,Invesco Global Listed Private Equity ETF,KRW unhedged (USD asset × USDKRW),0.068,0.22
+실물 인프라,IGF,iShares Global Infrastructure ETF,KRW unhedged (USD asset × USDKRW),0.068,0.11
+사모대출 PD,BIZD,VanEck BDC Income ETF,KRW unhedged (USD asset × USDKRW),0.078,0.095
