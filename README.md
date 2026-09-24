@@ -184,3 +184,13 @@ BL-MVO가 여러 active cap과 TE 1.0% 한도에 붙어, 수작업으로 수정�
 Stress 3의 직접 상관충격 행렬은 최소 고유값이 -0.201로 비정상(비-PSD)이 되어 nearest-PSD 보정을 적용했다. 보정 적용 여부와 최종 최소 고유값은 results/step13_covariance_diagnostics.csv에 기록했다.
 
 세 스트레스 모두에서 Robust BL은 위험 증가 또는 효용 감소 측면에서 공식목표와 팀 시나리오보다 완충력이 높게 나타났다. 단, Stress 1에서는 CMA 뷰 실패가 BL active bet을 겨냥하기 때문에 공식목표 대비 active alpha가 추가로 약 15.8bp 악화되며, 이는 최종 재심의 조건의 뷰 적중률 기준과 연결한다.
+
+
+## STEP 15 통합 재현 노트북
+
+제출용 노트북:
+- `submission/team2_NPS_MVO_BL.ipynb`
+
+노트북은 STEP 2 → 5~14를 순서대로 실행하고 핵심 중간표를 표시한다. 마지막 셀에서 `team2_weights.csv`와 `team2_views.csv`를 다시 생성한다.
+
+다음 단계: 과제 지정 12장 구조의 최종 PPT 작성.
