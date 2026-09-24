@@ -119,6 +119,14 @@ transition["change_pp"] = (transition["2027_team"] - transition["2026H1_actual"]
 transition["static_balance_equivalent_trn"] = (
     transition["2027_team"] - transition["2026H1_actual"]
 ) * TOTAL_ASSETS_2026H1_TRN
+transition["official_2027"] = pd.Series(OFFICIAL_COMMON)
+transition["official_change_pp"] = (transition["official_2027"] - transition["2026H1_actual"]) * 100
+transition["official_static_balance_equivalent_trn"] = (
+    transition["official_2027"] - transition["2026H1_actual"]
+) * TOTAL_ASSETS_2026H1_TRN
+transition["incremental_team_vs_official_trn"] = (
+    transition["2027_team"] - transition["official_2027"]
+) * TOTAL_ASSETS_2026H1_TRN
 transition.to_csv(
     RESULTS / "step11_transition_2026H1_to_team.csv",
     encoding="utf-8-sig",
@@ -164,12 +172,24 @@ metadata = {
     "notes": [
         "Cash 0.1% is fixed outside the 8-asset risky-sleeve optimization.",
         "Static-balance equivalents are not required transaction amounts; market moves, cash flows, and natural drift can change the path.",
-        "Only DM and EM differ from official mapped weights by more than 2 percentage points in the detailed team classification.",
+        "DM (-5.25%p) and EM (+3.65%p) differ from official mapped weights by more than 2%p. The team deliberately reduces the neutral benchmark's DM concentration while preserving the total foreign-equity allocation close to policy.",
+        "The 2026H1-to-2027 implementation table reports both the full transition burden and the incremental burden versus simply implementing the official 2027 target.",
+    ],
+    "mapping_rule": {
+        "foreign_equity": "DM 92% / EM 8%, pre-set neutral mapping independent of Team CMA",
+        "alternatives": "PE / Infrastructure / Private Debt equal thirds, pre-set neutral mapping independent of Team CMA",
+    },
+    "team_judgment": [
+        "The Team target is an IC scenario, not a mechanical copy of any Part-2 optimizer.",
+        "Domestic equity is kept above the official 20.8% to reduce the 2026H1-to-2027 implementation gap.",
+        "Foreign equity remains near the official total while the internal DM/EM split is less concentrated in DM than the neutral mapped benchmark.",
+        "Alternatives stay close to the official aggregate because implementation speed and illiquidity constrain rapid changes.",
+        "Foreign-asset risk is evaluated on a KRW-unhedged basis in the proxy covariance.",
     ],
     "sources": [
-        "https://www.mohw.go.kr/gallery.es?act=view&b_list=12&bid=0003&list_no=380100",
-        "https://fund.nps.or.kr/oprtprcn/otln/getOHED0013M0.do",
-        "https://fund.nps.or.kr/oprtplcy/astaprtplcy/getOHEC0007M0.do",
+        "Yahoo Finance: original proxy-price source for the frozen 2016-09 to 2026-08 return sample; live download not required by the analysis pipeline.",
+        "NPS public allocation disclosure: source for 2026H1 actual weights and total assets used in the implementation-gap illustration.",
+        "Official 2027 target weights: provided directly by the assignment, not counted as an additional public-data input."
     ],
 }
 
