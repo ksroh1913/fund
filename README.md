@@ -2,7 +2,7 @@
 
 국민연금 CMA 기반 2027 목표비중 및 MVO/Robust/Policy Black-Litterman 종합과제 작업 저장소입니다.
 
-현재 구현 범위: **STEP 2, STEP 5~13**
+현재 구현 범위: **STEP 2, STEP 5~14**
 
 ## 구조
 
@@ -130,8 +130,32 @@ BL-MVO가 여러 active cap과 TE 1.0% 한도에 붙어, 수작업으로 수정�
 - STEP 10: 방법론 종합비교
 - STEP 11: 2027 팀 목표비중 시나리오
 - STEP 12: Policy Black-Litterman 완료
-- **STEP 13: Stress Test 완료**
-- 다음: **최종 의결문·재심의 조건·PPT/제출파일 정리**
+- STEP 13: Stress Test 완료
+- **STEP 14: 최종 의결안·재심의 조건 완료**
+- 다음: **최종 노트북 통합 → PPT 작성**
+
+## STEP 14 최종 의결안
+
+최종 분석 시나리오는 Robust BL 비중을 사용한다.
+
+| 자산군 | 공식 2027 | 최종 |
+|---|---:|---:|
+| 국내주식 | 20.8% | 19.17% |
+| 해외주식 | 35.6% | 32.83% |
+| 국내채권 | 21.8% | 24.80% |
+| 해외채권 | 7.4% | 9.25% |
+| 대체투자 | 14.3% | 13.85% |
+| 단기자금 | 0.1% | 0.10% |
+
+재심의 조건:
+1. 공식목표 대비 사전 TE > 1.0%
+2. 최근 8분기 뷰 적중률 < 55%
+3. 국내주식 연간 순매도 필요액 > 48조원(강의 케이스 교육용 가정; 실제 적용 시 최신 ADV로 재산정)
+
+제출용 중간파일:
+- submission/team2_weights.csv
+- submission/team2_views.csv
+- docs/step14_final_resolution.md
 
 ## STEP 13 Stress Test
 
