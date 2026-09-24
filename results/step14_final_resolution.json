@@ -3,7 +3,7 @@
   "final_common_weights": {
     "국내주식": 0.2058307284223653,
     "해외주식": 0.3341692715776347,
-    "국내채권": 0.22649999999999998,
+    "국내채권": 0.2265,
     "해외채권": 0.08873428823153838,
     "대체투자": 0.1437657117684616,
     "단기자금": 0.001
@@ -11,10 +11,10 @@
   "final_common_delta_vs_official": {
     "국내주식": -0.0021692715776346905,
     "해외주식": -0.021830728422365275,
-    "국내채권": 0.00849999999999998,
+    "국내채권": 0.0085,
     "해외채권": 0.014734288231538384,
     "대체투자": 0.0007657117684616022,
-    "단기자금": 0.0
+    "단기자금": 0
   },
   "diagnostics": {
     "expected_return_CMA": 0.05609081346107683,
@@ -27,16 +27,20 @@
     "stress3_Higham_utility_change": -0.0031731486662648356
   },
   "implementation": {
-    "2026H1_to_final_domestic_equity_sell_trn": 158.89179305523524,
+    "full_2026H1_to_final_domestic_equity_sell_trn": 158.89179305523524,
     "incremental_vs_official_domestic_equity_sell_trn": 4.046993055235278,
-    "W04_case_ADV_trn": 20.0,
+    "W04_case_ADV_trn": 20,
     "W04_case_trading_days": 240,
     "full_path_participation_rate": 0.03310245688650734,
-    "incremental_vs_official_participation_rate": 0.0008431235531740163
+    "incremental_vs_official_participation_rate": 0.0008431235531740163,
+    "interpretation": "Full burden is reported for Part-3 feasibility; the review trigger focuses on incremental burden caused by changing the official target."
   },
   "review_conditions": {
     "ex_ante_TE_max": 0.01,
     "view_hit_rate_min": 0.55,
+    "view_hit_rate_definition": "Team governance monitoring rule, not a statistical-significance threshold; compare realized relative-return direction with the sign of Q-pi over the recent 8 quarters.",
     "incremental_domestic_equity_participation_max": 0.01
-  }
+  },
+  "minority_view": "Maintain the official target until sufficient view-hit history is accumulated; use BL only as a validation tool.",
+  "resolution": "위원회는 2027년 공식 목표비중을 수정하여 국내주식 20.6%, 해외주식 33.4%, 국내채권 22.7%, 해외채권 8.9%, 대체투자 14.4%, 단기자금 0.1%로 설정한다. 공식 대비 수정폭은 각각 -0.2%p, -2.2%p, +0.9%p, +1.5%p, +0.1%p, 0.0%p다. Team안은 CMA 뷰 실패에 강하고 Robust BL은 주식·대체 충격에 강해 두 안을 50:50 결합했으며, 단순 25·50·75% 혼합안 중 50:50이 TE와 회전율도 가장 낮았다. 사전 TE가 1.0%를 초과하거나 최근 8분기 뷰 적중률이 55% 미만이거나 공식 이행경로 대비 추가 국내주식 거래참여율이 ADV 1%를 초과하면 공식 목표로 복귀하거나 재심의한다."
 }
