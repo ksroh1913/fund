@@ -1,24 +1,9 @@
 {
-  "baseline_gamma": 4.0,
-  "lw_shrinkage": 0.12191206329292961,
-  "most_sensitive_asset_50bp": {
-    "asset": "국내주식",
-    "max_abs_own_weight_change": 0.038329193261372185,
-    "shock_for_max_own": -0.005,
-    "max_portfolio_L1_change": 0.07665838652274445,
-    "shock_for_max_L1": -0.005
-  },
-  "smallest_eigenvalue": 0.0014933309924159718,
-  "smallest_eigenvector_positive": [
-    ["글로벌 IG 크레딧", 0.7722961202785287],
-    ["사모주식 PE/VC", 0.49064894635860845],
-    ["실물 인프라", 0.24558168934960034]
-  ],
-  "smallest_eigenvector_negative": [
-    ["글로벌 선진국 DM", -0.49170512507858843],
-    ["국내 국채(초장기)", -1.0],
-    ["사모대출 PD", -0.7857171389456866]
-  ],
-  "primary_reference_method": "Michaud mean (per-draw Ledoit-Wolf + resampling)",
-  "reason": "Smooths single-sample corner solutions, incorporates joint mu/Sigma sampling uncertainty, and produced lower TE/turnover versus point-estimate MVO; Ellipsoid retained as robustness check."
+  "baseline_gamma": 4,
+  "primary_reference_method": "Pure Michaud resampling",
+  "primary_reference_reason": "Separates resampling instability from Ledoit-Wolf covariance shrinkage; LW+Michaud is retained as a sensitivity.",
+  "gamma_reason": "gamma=2 and gamma=4 produce nearly the same ~10.1% policy-MVO risk, close to the official-mapped ~10.7% risk; gamma=6 is a lower-risk sensitivity.",
+  "risk_comparison": "Table B volatility and Sharpe use common Team CMA Sigma; LW model-covariance metrics are shown separately.",
+  "detail_bounds_note": "EM/PE/Infrastructure/PD 10% caps are Team assumptions, not official NPS detailed limits.",
+  "uncertainty_note": "Box default widths and Ellipsoid bootstrap S_mu have different calibration scales; audit_sensitivities.py reports bootstrap-SE Box and Sigma/T Ellipsoid alternatives."
 }
