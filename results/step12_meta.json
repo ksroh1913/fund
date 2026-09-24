@@ -1,21 +1,21 @@
 {
   "delta": 2.5,
   "tau": 0.025,
-  "T_years": 10.0,
+  "T_years_baseline": 10,
   "rf": 0.03,
+  "gamma": 4,
   "prior_weight": 0.8,
   "cma_weight": 0.2,
   "P": "identity",
   "Omega": "Sigma/T",
-  "Sigma_BL_choice": "Sigma unchanged",
-  "cash_treatment": "0.1% fixed outside 8-asset risky BL system",
+  "T_interpretation": "Proxy assumption: W3 CMA is forward-looking, so the 120-month risk sample is converted to a 10-year equivalent solely to operationalize the assignment Omega formula.",
+  "delta_vs_gamma": "delta=2.5 reverse-engineers the policy prior; gamma=4 is the portfolio utility risk-aversion coefficient. They play different roles.",
+  "cash_baseline": "Policy cash fixed at official 0.1%; 0-2% optimization is reported as sensitivity.",
   "active_cap": 0.03,
   "TE_cap": 0.01,
-  "robust_BL_kappa": 2.710003966362742,
-  "final_BL_portfolio": "Robust BL",
   "notes": [
-    "The Step 11 team target is not used as the BL prior.",
-    "BL-MVO hit several +/-3% active caps and the 1.0% TE cap, so Ellipsoidal Robust BL was applied without manual weight edits.",
-    "Robust BL still binds some caps; these are reported rather than manually overridden."
+    "Step 11 Team target is not used as the BL prior.",
+    "Baseline TE limit remains 1.0%; 0.95% is only an implementation-buffer sensitivity.",
+    "T=5/10/20 recompute posterior, BL-MVO, and Robust BL."
   ]
 }
