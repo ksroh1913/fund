@@ -1,0 +1,34 @@
+{
+  "B": 300,
+  "seed": 60080,
+  "T": 120,
+  "gamma": 4.0,
+  "method": "monthly bootstrap; recentered CMA mean shock; per-draw Ledoit-Wolf correlation; CMA marginal sigma; same policy constraints",
+  "baseline_metrics": {
+    "expected_return": 0.059282581631153,
+    "volatility": 0.10107839225258139,
+    "sharpe": 0.2897016956698296,
+    "TE": 0.01799208449704868,
+    "turnover": 0.20754405230594808
+  },
+  "michaud_mean_metrics": {
+    "expected_return": 0.057704540521756144,
+    "volatility": 0.10310297238368797,
+    "sharpe": 0.26870748613004397,
+    "TE": 0.010576271222085046,
+    "turnover": 0.12066226974426487
+  },
+  "average_lw_shrinkage": 0.10461966802408024,
+  "lw_shrinkage_p05": 0.05941981280126477,
+  "lw_shrinkage_p95": 0.15466502629146406,
+  "mean_group_weights": {
+    "국내주식": 0.2004774402061351,
+    "해외주식": 0.3376437234669021,
+    "국내채권": 0.2007612878580583,
+    "해외채권": 0.10257993136631004,
+    "대체투자": 0.1585376171025946,
+    "총주식": 0.5381211636730371,
+    "총채권": 0.30334121922436835
+  },
+  "sum_mean_weights": 1.0
+}
