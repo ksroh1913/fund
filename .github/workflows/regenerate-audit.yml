@@ -33,12 +33,17 @@ jobs:
       - name: Execute notebook in place
         working-directory: submission
         run: |
-          jupyter nbconvert --to notebook --execute --inplace team2_NPS_MVO_BL.ipynb --ExecutePreprocessor.timeout=600
+          set +e
+          jupyter nbconvert --to notebook --execute --inplace team2_NPS_MVO_BL.ipynb --ExecutePreprocessor.timeout=600 > ../workflow_run.log 2>&1
+          status=$?
+          cat ../workflow_run.log
+          echo "$status" > ../workflow_status.txt
+          exit 0
       - name: Commit regenerated outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data results submission docs
+          git add data results submission docs workflow_run.log workflow_status.txt
           if git diff --cached --quiet; then
             echo "No generated changes"
           else
