@@ -1,9 +1,5 @@
-scenario,check,value
-Stress2,raw_min_corr_eigenvalue,0.033518253743631814
-Stress2,PSD_fix_applied,False
-Stress2,final_min_corr_eigenvalue,0.033518253743631814
-Stress2,final_min_cov_eigenvalue,0.0007404821586840245
-Stress3,raw_min_corr_eigenvalue,-0.20076622269952782
-Stress3,PSD_fix_applied,True
-Stress3,final_min_corr_eigenvalue,9.455656487055585e-09
-Stress3,final_min_cov_eigenvalue,2.900573552395288e-10
+﻿scenario,raw_min_corr_eigenvalue,correction,final_min_corr_eigenvalue
+Stress2_policy_equity,0.03351825374363105,none,0.03351825374363105
+Stress2_include_PE,-0.042748691256431694,Higham,-9.128216707951319e-13
+Stress3,-0.2007662226995283,eigenvalue clipping,9.455656496596564e-09
+Stress3,-0.2007662226995283,Higham,-9.632922134200725e-13

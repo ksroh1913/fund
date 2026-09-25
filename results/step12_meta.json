@@ -1,9 +1,9 @@
 {
   "delta": 2.5,
   "tau": 0.025,
-  "T_years_baseline": 10,
+  "T_years_baseline": 10.0,
   "rf": 0.03,
-  "gamma": 4,
+  "gamma": 4.0,
   "prior_weight": 0.8,
   "cma_weight": 0.2,
   "P": "identity",
@@ -13,9 +13,10 @@
   "cash_baseline": "Policy cash fixed at official 0.1%; 0-2% optimization is reported as sensitivity.",
   "active_cap": 0.03,
   "TE_cap": 0.01,
+  "robust_BL_kappa": 2.710003966362742,
   "notes": [
     "Step 11 Team target is not used as the BL prior.",
-    "Baseline TE limit remains 1.0%; 0.95% is only an implementation-buffer sensitivity.",
-    "T=5/10/20 recompute posterior, BL-MVO, and Robust BL."
+    "Baseline TE limit remains the assignment-required 1.0%; 0.95% is only an implementation-buffer sensitivity.",
+    "BL-MVO and Robust BL are reported without manual weight edits."
   ]
 }

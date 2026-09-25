@@ -1,5 +1,4 @@
-item,interpretation
-Box bootstrap-SE,"Sensitivity only. Wider bootstrap-SE widths push the solution toward policy corners; calibration size, not only uncertainty-set geometry, drives Box-vs-Ellipsoid differences."
-Ellipsoid Sigma/T,Sensitivity only. Baseline remains proxy-bootstrap S_mu; Sigma/T shows dependence on uncertainty-scale choice.
-10% detail caps,"Exact 10% EM/PE/Infrastructure/PD caps are Team assumptions, not official NPS detailed limits. Relaxed-cap outputs disclose their influence."
-Michaud baseline,Table B uses pure Michaud (sample correlation per resample). LW+Michaud is retained as a practical combined sensitivity.
+﻿item,interpretation
+Box bootstrap-SE,"Sensitivity only. Much wider uncertainty widths push the solution to policy corners; this demonstrates that calibration size, not only set geometry, drives Box-vs-Ellipsoid differences."
+Ellipsoid Sigma/T,Sensitivity only. Baseline remains the assignment-recommended proxy bootstrap S_mu; Sigma/T shows dependence on uncertainty-scale choice.
+10% detail caps,"Exact 10% levels are Team assumptions, not official NPS limits. Relaxed-cap outputs show how much Part-2 results depend on them."

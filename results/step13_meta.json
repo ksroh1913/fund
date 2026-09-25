@@ -7,6 +7,5 @@
   ],
   "stress2_PE_sensitivity": "PE is mapped as an alternative in the baseline; a PE-as-equity sensitivity is separately reported.",
   "stress3": "Both eigenvalue clipping and Higham nearest-correlation corrections are reported because the raw shocked matrix is not PSD.",
-  "evaluation_basis": "CMA total returns and common CMA Sigma.",
-  "view_hit_rate_note": "55% is a Team governance monitoring threshold, not a statistical-significance claim."
+  "evaluation_basis": "CMA total returns and common CMA Sigma, so all portfolios are compared on one basis."
 }

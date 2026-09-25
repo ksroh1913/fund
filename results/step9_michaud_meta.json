@@ -2,19 +2,29 @@
   "B": 300,
   "seed": 60080,
   "T": 120,
-  "gamma": 4,
+  "gamma": 4.0,
   "baseline_method": "pure Michaud: bootstrap mean + per-draw sample correlation + CMA sigma",
   "sensitivity_method": "Michaud + per-draw Ledoit-Wolf correlation",
-  "pure_michaud_mean_weights": [
-    0.2008577341548856,
-    0.2619491729128994,
-    0.0746588142664154,
-    0.2027350354702337,
-    0.1022724599916764,
-    0.0178014242460496,
-    0.0629773748146098,
-    0.0767479841432297
-  ],
-  "average_lw_shrinkage_sensitivity": 0.10461966802408014,
-  "note": "Table B uses pure Michaud so the resampling effect is separated from Ledoit-Wolf shrinkage."
+  "baseline_metrics": {
+    "expected_return": 0.059282581730311104,
+    "volatility": 0.10107839249783186,
+    "sharpe": 0.28970169594791706,
+    "TE": 0.01799208608804922,
+    "turnover": 0.20754406883229648
+  },
+  "michaud_mean_metrics": {
+    "expected_return": 0.0575918765459638,
+    "volatility": 0.10265126010304566,
+    "sharpe": 0.26879238032018227,
+    "TE": 0.010552700847192327,
+    "turnover": 0.11864529451214562
+  },
+  "lw_sensitivity_mean_metrics": {
+    "expected_return": 0.057704540498905284,
+    "volatility": 0.1031029724010836,
+    "sharpe": 0.26870748586307597,
+    "TE": 0.010576271096338023,
+    "turnover": 0.1206622687307669
+  },
+  "average_lw_shrinkage": 0.10461966802408024
 }
