@@ -135,7 +135,7 @@ summary={
    "incremental_domestic_equity_participation_max":PARTICIPATION_TRIGGER
  },
  "minority_view":"Team안 채택. 팀 CMA 기준 기대수익률이 공식보다 약 15bp 높고, 공식 경로 대비 국내주식 매도 부담이 약 22조원 적으며, 6개 공통분류 기준 수정폭이 모두 ±3%p 이내라는 점을 근거로 한다.",
- "resolution_template":resolution,
+ "resolution":resolution,
 }
 (RESULTS/"step14_final_resolution.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8")
 md=f"""# STEP 14 IC Decision Status
