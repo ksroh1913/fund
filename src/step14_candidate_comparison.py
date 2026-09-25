@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """STEP 14 candidate comparison before the final IC decision.
 
-Final IC choice is intentionally left open.  The three decision candidates are
-Team, baseline Robust BL (TE 1.0%), and a 50:50 committee-overlay candidate.
-Robust BL with TE 0.95% and 25/75 blends remain sensitivities only.
+Final IC choice is Robust BL (TE 1.0%).  Team and a 50:50 committee overlay
+remain comparison alternatives. Robust BL with TE 0.95% and 25/75 blends
+remain sensitivities only.
 
 Stress 1 uses the baseline Robust-BL active direction, as required by the
 assignment's BL-active adverse-view-miss definition.
@@ -76,10 +76,25 @@ for name,w in candidates.items():
       "domestic_equity_full_sell_trn":(ACTUAL_KR-w[idx["국내주식"]])*AUM,
       "domestic_equity_incremental_vs_official_trn":(.208-w[idx["국내주식"]])*AUM})
 df=pd.DataFrame(rows)
-df["decision_role"]=np.where(df["candidate"].isin(["Team","Robust BL TE1.00","Blend 50% RBL"]),"final_candidate","sensitivity")
+
+# Add the supplemental self-active-direction Stress-1 result without replacing
+# the assignment-defined BL-direction stress.
+self_s1=pd.read_csv(RESULTS/"step13_stress1_self_active_sensitivity.csv").set_index("portfolio")
+name_map={"Team":"Team","Robust BL TE1.00":"Robust_BL","Blend 50% RBL":"Blend_50_RBL"}
+df["stress1_self_active_loss"]=np.nan
+for cand,key in name_map.items():
+    df.loc[df["candidate"]==cand,"stress1_self_active_loss"]=float(self_s1.loc[key,"active_return_change"])
+
+df["decision_role"]=np.select(
+    [df["candidate"].eq("Robust BL TE1.00"),
+     df["candidate"].isin(["Team","Blend 50% RBL"])],
+    ["selected_final","comparison_alternative"],
+    default="sensitivity"
+)
 df.to_csv(RESULTS/"step14_candidate_comparison.csv",index=False,encoding="utf-8-sig")
 
-# Decision aid only: no scenario probabilities are asserted.
+# Legacy decision aid only. It is retained for audit reference but is not used
+# as a selection rationale after the self-active sensitivity was added.
 team=df.set_index("candidate").loc["Team"];rbl=df.set_index("candidate").loc["Robust BL TE1.00"]
 normal_adv=float(rbl["utility"]-team["utility"])
 s1_adv=float((team["utility"]+team["stress1_utility_change"])-(rbl["utility"]+rbl["stress1_utility_change"]))
@@ -93,7 +108,7 @@ pd.DataFrame([{
  "stress1_Team_minus_RBL_utility":s1_adv,
  "stress23_mean_RBL_minus_Team_utility":s23_adv,
  "illustrative_breakeven_view_failure_probability":breakeven,
- "note":"Decision aid only. No scenario probability is supplied or inferred."
+ "note":"Legacy audit reference only; not used for the final Robust-BL selection. No scenario probability is supplied or inferred."
 }]).to_csv(RESULTS/"step14_decision_aid.csv",index=False,encoding="utf-8-sig")
 
-print(df[["candidate","decision_role","expected_return","expected_return_vs_official","volatility_common_Sigma","utility","TE","turnover","stress1_active_loss","stress2_utility_change","stress3_Higham_utility_change","domestic_equity_incremental_vs_official_trn"]])
+print(df[["candidate","decision_role","expected_return","expected_return_vs_official","volatility_common_Sigma","utility","TE","turnover","stress1_active_loss","stress1_self_active_loss","stress2_utility_change","stress3_Higham_utility_change","domestic_equity_incremental_vs_official_trn"]])
