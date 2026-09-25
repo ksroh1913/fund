@@ -88,21 +88,24 @@ Baseline equity = 국내주식 / DM / EM. PE는 정책 mapping상 대체투자�
 ### Stress 3
 대체 σ×1.5, 대체-글로벌주식 corr +0.20. raw shocked correlation이 PSD가 아니므로 eigenvalue-clipping과 Higham nearest-correlation 결과를 모두 보고합니다.
 
-## Final IC decision
+## Final IC decision status
 
-최종안은 Team과 baseline Robust BL을 **50:50**으로 결합한 committee overlay입니다.
+최종 IC 안은 **아직 확정하지 않았습니다**. 최종 후보는 다음 세 가지입니다.
 
 - Team: direct CMA view miss에 강함.
-- Robust BL: equity/correlation 및 alternative-risk shock에 강함.
-- 과제가 시나리오 확률을 제공하지 않으므로 어느 한 stress를 임의로 우선하지 않고 투명한 equal blend를 사용합니다.
-- 사전에 비교한 25/50/75% RBL blend 중 50:50이 TE와 turnover도 가장 낮았습니다.
+- baseline Robust BL (TE 1.0%): equity/correlation 및 alternative-risk shock에 강함.
+- 50:50 Team / Robust BL committee overlay: 두 오류원 사이의 절충 후보.
 
-최종 공통분류는 코드에서 정확히 생성하며, PPT 표시에서는 반올림합니다.
+TE 0.95% Robust BL과 25/75 blend는 민감도로만 유지합니다. `src/step14_final_decision.py`의 `FINAL_CANDIDATE=None` 상태에서도 전체 파이프라인이 정상 종료되도록 설계했으며, 최종안을 정할 때 설정값만 변경하고 전체 결과를 다시 생성합니다.
+
+`results/step14_candidate_comparison.csv`에는 CMA 기준 기대수익률과 공식목표 대비 기대수익률 차이, 공통 Sigma 기준 위험, 효용, TE, turnover, Stress 1~3, 국내주식 이행부담을 함께 둡니다. `results/step14_decision_aid.csv`의 손익분기 확률은 시나리오 발생확률을 추정하거나 주장하는 값이 아니라 IC 판단 보조자료입니다.
 
 재심의 조건:
 1. 공식 목표 대비 ex-ante TE > 1.0%.
 2. 최근 8분기 view hit rate < 55%. 이는 통계적 유의성 기준이 아니라 Team governance monitoring rule입니다.
-3. 공식 이행경로 대비 추가 국내주식 거래참여율 > ADV 1%. W04 강의 케이스의 교육용 ADV 및 거래일 가정을 사용하며, 전체 2026→2027 이행부담은 별도로 보고합니다.
+3. 공식 이행경로 대비 추가 국내주식 거래참여율 > ADV 1%.
+
+이행가능성 계산에서는 **ADV 20조원, 연간 거래일수 240일을 가정**합니다. 전체 2026→2027 이행부담과 공식 목표 대비 추가 부담을 별도로 보고합니다.
 
 ## Submission files
 
