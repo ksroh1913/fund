@@ -79,8 +79,10 @@ W3 CMA는 forward-looking building-block 전망이라 통계적 sample mean이 �
 ## Stress definitions
 
 ### Stress 1
-CMA가 최종 BL active 방향에 불리하게 1SE 빗나간다고 보고,
+과제 baseline은 CMA가 Robust BL active 방향에 불리하게 1SE 빗나간다고 보고,
 `SE_i = sqrt(Omega_ii)`를 사용합니다. 포트폴리오 비중은 고정하며 CMA에 직접 충격을 적용합니다. posterior를 다시 통과시켜 충격을 20%로 축소하지 않습니다.
+
+별도 보조 민감도에서는 각 후보를 **자기 active 방향에 불리하게** 같은 1SE로 충격합니다. 이는 과제 Stress 1을 대체하지 않으며, 각 후보 자신의 베팅이 틀렸을 때의 공정한 비교를 위한 보조 진단입니다.
 
 ### Stress 2
 Baseline equity = 국내주식 / DM / EM. PE는 정책 mapping상 대체투자이므로 baseline에서 제외하고, PE 포함 버전을 sensitivity로 보고합니다.
@@ -88,24 +90,26 @@ Baseline equity = 국내주식 / DM / EM. PE는 정책 mapping상 대체투자�
 ### Stress 3
 대체 σ×1.5, 대체-글로벌주식 corr +0.20. raw shocked correlation이 PSD가 아니므로 eigenvalue-clipping과 Higham nearest-correlation 결과를 모두 보고합니다.
 
-## Final IC decision status
+## Final IC decision
 
-최종 IC 안은 **아직 확정하지 않았습니다**. 최종 후보는 다음 세 가지입니다.
+최종 IC 안은 **Robust BL (TE 1.0%)**로 확정했습니다.
 
-- Team: direct CMA view miss에 강함.
-- baseline Robust BL (TE 1.0%): equity/correlation 및 alternative-risk shock에 강함.
-- 50:50 Team / Robust BL committee overlay: 두 오류원 사이의 절충 후보.
-
-TE 0.95% Robust BL과 25/75 blend는 민감도로만 유지합니다. `src/step14_final_decision.py`의 `FINAL_CANDIDATE=None` 상태에서도 전체 파이프라인이 정상 종료되도록 설계했으며, 최종안을 정할 때 설정값만 변경하고 전체 결과를 다시 생성합니다.
-
-`results/step14_candidate_comparison.csv`에는 CMA 기준 기대수익률과 공식목표 대비 기대수익률 차이, 공통 Sigma 기준 위험, 효용, TE, turnover, Stress 1~3, 국내주식 이행부담을 함께 둡니다. `results/step14_decision_aid.csv`의 손익분기 확률은 시나리오 발생확률을 추정하거나 주장하는 값이 아니라 IC 판단 보조자료입니다.
+- 과제 정의 Stress 1에서는 Robust BL이 약 -66.6bp로 세 후보 중 가장 불리합니다. 이 충격이 BL active 방향을 직접 겨냥하기 때문이라는 점을 그대로 공시합니다.
+- 보조 자기-direction Stress 1에서는 Team 약 -84.2bp, Robust BL 약 -66.6bp, 50:50 약 -63.1bp입니다.
+- Stress 2와 Stress 3에서도 Robust BL은 Team보다 효용 감소가 작습니다.
+- CMA 기준 기대수익률은 공식보다 약 5bp 낮지만, 변동성을 약 0.9%p 낮춥니다.
+- 목표비중 기준 사전 TE는 **1.00%로 한도 내이지만 경계**에 있습니다.
+- 경계 제약은 국내채권 +3%p, PE -3%p, PD +3%p, TE 1.0%입니다.
+- 공식 경로 대비 국내주식 추가 매도는 약 30.5조원이며, **ADV 20조원·연간 거래일수 240일을 가정**하면 추가 참여율은 약 0.64%로 1% 기준 이내입니다.
 
 재심의 조건:
-1. 공식 목표 대비 ex-ante TE > 1.0%.
+1. 운용 중 실제 비중 드리프트로 사전 TE가 1.0%를 넘으면 우선 리밸런싱하고, 리밸런싱 후에도 1.0%를 초과하면 재심의.
 2. 최근 8분기 view hit rate < 55%. 이는 통계적 유의성 기준이 아니라 Team governance monitoring rule입니다.
 3. 공식 이행경로 대비 추가 국내주식 거래참여율 > ADV 1%.
 
-이행가능성 계산에서는 **ADV 20조원, 연간 거래일수 240일을 가정**합니다. 전체 2026→2027 이행부담과 공식 목표 대비 추가 부담을 별도로 보고합니다.
+손익분기 확률 31.48% 파일은 감사 참고용으로 남기되, 최종 선택 근거로 사용하지 않습니다.
+
+소수의견은 **Team안 채택**입니다. 팀 CMA 기준 기대수익률이 공식보다 약 15bp 높고, 공식 경로 대비 국내주식 매도 부담이 약 22조원 적으며, 6개 공통분류 기준 수정폭이 모두 ±3%p 이내라는 점을 근거로 합니다.
 
 ## Submission files
 
