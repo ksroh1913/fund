@@ -118,6 +118,12 @@ summary={
  "decision":FINAL_CANDIDATE,
  "final_common_weights":None if w_final is None else {k:float(v) for k,v in common(w_final).items()},
  "diagnostics":diagnostics,
+ "binding_constraints":{
+   "국내채권_active_pp":3.0,
+   "사모주식_PE_active_pp":-3.0,
+   "사모대출_PD_active_pp":3.0,
+   "target_weight_ex_ante_TE_pct":1.0
+ },
  "implementation":implementation,
  "assumptions":{"ADV_trn":ADV_TRN,"trading_days":TRADING_DAYS},
  "review_conditions":{
