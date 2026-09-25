@@ -55,13 +55,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-runpy.run_path(str(ROOT/\"src/step14_candidate_comparison.py\"),run_name=\"__main__\")\nshow_csv(\"results/step14_candidate_comparison.csv\")\nshow_csv(\"results/step14_decision_aid.csv\")\nrunpy.run_path(str(ROOT/\"src/step14_final_decision.py\"),run_name=\"__main__\")\nshow_csv(\"results/step14_final_weights.csv\")\nshow_csv(\"submission/team2_views.csv\")\nprint((RESULTS/\"step14_final_resolution.json\").read_text(encoding=\"utf-8\"))\n
+runpy.run_path(str(ROOT/"src/step14_candidate_comparison.py"),run_name="__main__")\nshow_csv("results/step14_candidate_comparison.csv")\nshow_csv("results/step14_decision_aid.csv")\nrunpy.run_path(str(ROOT/"src/step14_final_decision.py"),run_name="__main__")\nshow_csv("results/step14_final_weights.csv")\nshow_csv("submission/team2_views.csv")\nprint((RESULTS/"step14_final_resolution.json").read_text(encoding="utf-8"))\n
 ------------------
 
 
   [36mCell[39m[36m [39m[32mIn[10][39m[32m, line 1[39m
-[31m    [39m[31mrunpy.run_path(str(ROOT/\"src/step14_candidate_comparison.py\"),run_name=\"__main__\")\nshow_csv(\"results/step14_candidate_comparison.csv\")\nshow_csv(\"results/step14_decision_aid.csv\")\nrunpy.run_path(str(ROOT/\"src/step14_final_decision.py\"),run_name=\"__main__\")\nshow_csv(\"results/step14_final_weights.csv\")\nshow_csv(\"submission/team2_views.csv\")\nprint((RESULTS/\"step14_final_resolution.json\").read_text(encoding=\"utf-8\"))\n[39m
-                             ^
+[31m    [39m[31mrunpy.run_path(str(ROOT/"src/step14_candidate_comparison.py"),run_name="__main__")\nshow_csv("results/step14_candidate_comparison.csv")\nshow_csv("results/step14_decision_aid.csv")\nrunpy.run_path(str(ROOT/"src/step14_final_decision.py"),run_name="__main__")\nshow_csv("results/step14_final_weights.csv")\nshow_csv("submission/team2_views.csv")\nprint((RESULTS/"step14_final_resolution.json").read_text(encoding="utf-8"))\n[39m
+                                                                                       ^
 [31mSyntaxError[39m[31m:[39m unexpected character after line continuation character
 
 
