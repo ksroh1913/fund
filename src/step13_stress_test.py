@@ -6,11 +6,16 @@ or BL weights remain.
 
 Stress 1
 --------
-The assignment says the CMA itself misses by 1 standard error in the direction
-adverse to the final BL active position.  Therefore the fixed portfolios are
+Baseline follows the assignment literally: CMA misses by 1 standard error in
+the direction adverse to the Robust-BL active position.  Fixed portfolios are
 evaluated directly under stressed CMA returns (not passed through BL again).
 SE_i = sqrt(Omega_ii).  Absolute return, active return versus Official, and
-utility are all reported.
+utility are reported.
+
+A separate *self-active-direction* sensitivity applies the same 1SE rule
+against each candidate's own active weights.  This is not a replacement for
+the assignment stress; it is a fairness diagnostic showing how each candidate
+behaves when its own bets are wrong.
 
 Stress 2
 --------
@@ -93,6 +98,35 @@ pd.DataFrame({"asset":assets,"CMA_total":mu,"Omega_SE":se,"BL_active":active_bl,
               "CMA_shock":shock,"stressed_CMA_total":mu_s1}
 ).to_csv(RESULTS/"step13_stress1_view_miss.csv",index=False,encoding="utf-8-sig")
 
+# ---- Stress 1 supplemental sensitivity: shock each portfolio's own active direction ----
+w_blend=.5*w_team+.5*w_bl
+self_ports={"Team":w_team,"Robust_BL":w_bl,"Blend_50_RBL":w_blend}
+self_rows=[]
+for k,w in self_ports.items():
+    own_active=w-w_off
+    own_shock=np.where(own_active>0,-se,np.where(own_active<0,se,0.))
+    m_self=mu+own_shock
+    er0,v0,u0=pm(w,mu,Sigma); er1,v1,u1=pm(w,m_self,Sigma)
+    off0=pm(w_off,mu,Sigma)[0]; off1=pm(w_off,m_self,Sigma)[0]
+    self_rows.append({
+        "portfolio":k,
+        "baseline_expected_return":er0,
+        "stress_expected_return":er1,
+        "expected_return_change":er1-er0,
+        "baseline_active_return_vs_official":er0-off0,
+        "stress_active_return_vs_official":er1-off1,
+        "active_return_change":(er1-off1)-(er0-off0),
+        "baseline_volatility":v0,
+        "stress_volatility":v1,
+        "baseline_utility":u0,
+        "stress_utility":u1,
+        "utility_change":u1-u0,
+    })
+pd.DataFrame(self_rows).to_csv(
+    RESULTS/"step13_stress1_self_active_sensitivity.csv",
+    index=False,encoding="utf-8-sig"
+)
+
 # ---------------- Stress 2 ----------------
 def stress2(equity_assets):
     eq=[idx[a] for a in equity_assets]
@@ -173,7 +207,8 @@ pd.DataFrame({"asset":alt,
 ).to_csv(RESULTS/"step13_stress3_realized_shocks.csv",index=False,encoding="utf-8-sig")
 
 meta={
- "stress1":"Direct CMA 1SE miss; SE=sqrt(diag(Omega)); adverse direction defined by Robust BL active sign; fixed weights; no posterior re-filtering.",
+ "stress1":"Assignment baseline: direct CMA 1SE miss; SE=sqrt(diag(Omega)); adverse direction defined by Robust BL active sign; fixed weights; no posterior re-filtering.",
+ "stress1_self_active_sensitivity":"Supplemental only: each candidate is shocked against its own active direction using the same SE=sqrt(diag(Omega)). This does not replace the assignment-defined Stress 1.",
  "stress2_baseline_equities":eq_base,
  "stress2_PE_sensitivity":"PE is mapped as an alternative in the baseline; a PE-as-equity sensitivity is separately reported.",
  "stress3":"Both eigenvalue clipping and Higham nearest-correlation corrections are reported because the raw shocked matrix is not PSD.",
@@ -181,4 +216,5 @@ meta={
 }
 (RESULTS/"step13_meta.json").write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8")
 print(pd.DataFrame(s1rows))
+print(pd.DataFrame(self_rows))
 print(pd.DataFrame(rows))
