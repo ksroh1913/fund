@@ -1,5 +1,6 @@
 {
-  "stress1": "Direct CMA 1SE miss; SE=sqrt(diag(Omega)); adverse direction defined by Robust BL active sign; fixed weights; no posterior re-filtering.",
+  "stress1": "Assignment baseline: direct CMA 1SE miss; SE=sqrt(diag(Omega)); adverse direction defined by Robust BL active sign; fixed weights; no posterior re-filtering.",
+  "stress1_self_active_sensitivity": "Supplemental only: each candidate is shocked against its own active direction using the same SE=sqrt(diag(Omega)). This does not replace the assignment-defined Stress 1.",
   "stress2_baseline_equities": [
     "국내주식",
     "글로벌 선진국 DM",
