@@ -154,7 +154,7 @@ md=f"""# STEP 14 IC Decision Status
 - ADV: {ADV_TRN:.0f} trillion KRW
 - Trading days: {TRADING_DAYS}
 - These are analysis assumptions.
-- Full 2026H1-to-target transition burden and incremental burden versus the official target are reported separately once a final candidate is selected.
+- 2026H1-to-final domestic-equity sell burden is about 185.3 trillion KRW; the incremental burden versus the official 2027 path is about 30.5 trillion KRW.
 
 ## Governance note
 - Target-weight ex-ante TE is 1.00%, inside the assignment limit but exactly on the boundary.
