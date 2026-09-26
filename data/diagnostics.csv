@@ -4,8 +4,8 @@ start_month,2016-09-30
 end_month,2026-08-31
 corr_symmetry_max_abs_error,0.0
 corr_diag_max_abs_error,0.0
-corr_min_eigenvalue,0.09005407607642242
-corr_condition_number,47.995136506497445
-cov_min_eigenvalue,0.00149333099241589
-cov_condition_number,80.84833239095363
+corr_min_eigenvalue,0.09005407607642206
+corr_condition_number,47.995136506497644
+cov_min_eigenvalue,0.0014933309924158925
+cov_condition_number,80.84833239095349
 cov_diag_sigma_max_abs_error,0.0

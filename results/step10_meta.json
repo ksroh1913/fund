@@ -1,16 +1,16 @@
 {
   "baseline_gamma": 4.0,
   "lw_shrinkage": 0.12191206329292963,
-  "smallest_eigenvalue": 0.0014933309924159768,
+  "smallest_eigenvalue": 0.0014933309924159744,
   "smallest_eigenvector": {
-    "국내주식": 0.15933698526037512,
-    "글로벌 선진국 DM": -0.4917051250785836,
-    "글로벌 신흥국 EM": -0.1305436849896586,
+    "국내주식": 0.15933698526037493,
+    "글로벌 선진국 DM": -0.49170512507858305,
+    "글로벌 신흥국 EM": -0.1305436849896585,
     "국내 국채(초장기)": -1.0,
-    "글로벌 IG 크레딧": 0.7722961202785279,
-    "사모주식 PE/VC": 0.49064894635860856,
-    "실물 인프라": 0.2455816893495954,
-    "사모대출 PD": -0.7857171389456924
+    "글로벌 IG 크레딧": 0.7722961202785275,
+    "사모주식 PE/VC": 0.49064894635860806,
+    "실물 인프라": 0.24558168934959526,
+    "사모대출 PD": -0.7857171389456914
   },
   "primary_reference_method": "Pure Michaud resampling",
   "primary_reference_reason": "Separates resampling instability from Ledoit-Wolf covariance shrinkage; LW+Michaud is retained as a sensitivity.",

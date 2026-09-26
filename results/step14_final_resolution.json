@@ -2,23 +2,23 @@
   "status": "DECIDED",
   "decision": "Robust BL TE1.00",
   "final_common_weights": {
-    "국내주식": 0.1916614566299704,
-    "해외주식": 0.3283385433700296,
+    "국내주식": 0.1916614569945745,
+    "해외주식": 0.32833854300542537,
     "국내채권": 0.248,
-    "해외채권": 0.0924685766237153,
-    "대체투자": 0.1385314233762845,
+    "해외채권": 0.0924685766698695,
+    "대체투자": 0.1385314233301303,
     "단기자금": 0.001
   },
   "diagnostics": {
-    "expected_return": 0.0550946269443982,
-    "expected_return_vs_official": -0.0005354797222684,
-    "volatility_common_Sigma": 0.098158567193887,
-    "utility": 0.0358244183172845,
+    "expected_return": 0.0550946269628761,
+    "expected_return_vs_official": -0.0005354797037904,
+    "volatility_common_Sigma": 0.0981585672002656,
+    "utility": 0.035824418333258,
     "TE": 0.01,
-    "turnover": 0.0784685766237153,
-    "stress1_active_loss": -0.0066559569643387,
-    "stress2_utility_change": -0.0117910092164533,
-    "stress3_Higham_utility_change": -0.0027332290845983
+    "turnover": 0.0784685766698695,
+    "stress1_active_loss": -0.0066559569540714,
+    "stress2_utility_change": -0.0117910092212874,
+    "stress3_Higham_utility_change": -0.0027332290841474
   },
   "binding_constraints": {
     "국내채권_active_pp": 3.0,
@@ -27,12 +27,12 @@
     "target_weight_ex_ante_TE_pct": 1.0
   },
   "implementation": {
-    "2026H1_to_final_domestic_equity_sell_trn": 185.32598651112718,
-    "incremental_vs_official_domestic_equity_sell_trn": 30.481186511127223,
+    "2026H1_to_final_domestic_equity_sell_trn": 185.32598583092178,
+    "incremental_vs_official_domestic_equity_sell_trn": 30.48118583092182,
     "assumed_ADV_trn": 20.0,
     "assumed_trading_days": 240,
-    "full_path_participation_rate": 0.0386095805231515,
-    "incremental_vs_official_participation_rate": 0.0063502471898181714
+    "full_path_participation_rate": 0.038609580381442035,
+    "incremental_vs_official_participation_rate": 0.006350247048108712
   },
   "assumptions": {
     "ADV_trn": 20.0,
